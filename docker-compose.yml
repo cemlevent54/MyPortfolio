@@ -1,0 +1,71 @@
+# version: "3.8"
+
+services:
+  database:
+    platform: linux/x86_64
+    image: mysql:5.7
+    restart: always
+    environment:
+      MYSQL_ROOT_PASSWORD: password
+      MYSQL_DATABASE: yourdb
+    ports:
+      - "3306:3306"
+    volumes:
+      - mysql_data:/var/lib/mysql
+    networks:
+      - app-network
+
+  phpmyadmin:
+    image: phpmyadmin
+    restart: always
+    ports:
+      - "8090:80"
+    environment:
+      PMA_HOST: database
+      PMA_PORT: 3306
+      MYSQL_ROOT_PASSWORD: password
+    depends_on:
+      - database
+    networks:
+      - app-network
+
+  backend:
+    build:
+      context: ./api
+      dockerfile: Dockerfile
+    restart: always
+    ports:
+      - "5000:80"
+    volumes:
+      - ./api:/app
+      - dotnet_cache:/root/.nuget/packages
+    entrypoint: ["dotnet", "watch", "run", "--urls", "http://*:80"]
+    depends_on:
+      - database
+    environment:
+      ConnectionStrings__MySqlConnection: "Server=database;Database=yourdb;User=root;Password=password"
+    networks:
+      - app-network
+
+  frontend:
+    build:
+      context: ./frontend
+      dockerfile: Dockerfile.dev
+    restart: always
+    volumes:
+      - ./frontend:/app
+      - /app/node_modules
+    ports:
+      - "8080:3000"
+    command: ["npm", "run", "dev"]
+    depends_on:
+      - backend
+    networks:
+      - app-network
+
+volumes:
+  mysql_data:
+  dotnet_cache:
+
+networks:
+  app-network:
