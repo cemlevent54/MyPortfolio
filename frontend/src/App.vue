@@ -1,85 +1,65 @@
 <script setup>
 import { RouterLink, RouterView } from 'vue-router'
-import HelloWorld from './components/HelloWorld.vue'
 </script>
 
 <template>
-  <header>
-    <img alt="Vue logo" class="logo" src="@/assets/logo.svg" width="125" height="125" />
-
-    <div class="wrapper">
-      <HelloWorld msg="You did it!" />
-
-      <nav>
-        <RouterLink to="/">Home</RouterLink>
-        <RouterLink to="/about">About</RouterLink>
-      </nav>
-    </div>
-  </header>
-
-  <RouterView />
+  <div>
+    <nav>
+      <ul>
+        <li><a href="#">Home</a></li>
+        <li><a href="#">About</a></li>
+        <li><a href="#">Contact</a></li>
+      </ul>
+    </nav>
+    <main>
+      <h1>Welcome to My Project</h1>
+      <p>This is a test page with a simple navbar and some text content. Feel free to edit and expand on this template to fit your needs.</p>
+    </main>
+  </div>
 </template>
 
+<script>
+export default {
+  name: 'App',
+};
+</script>
+
 <style scoped>
-header {
-  line-height: 1.5;
-  max-height: 100vh;
-}
-
-.logo {
-  display: block;
-  margin: 0 auto 2rem;
-}
-
 nav {
-  width: 100%;
-  font-size: 12px;
-  text-align: center;
-  margin-top: 2rem;
+  background-color: #333;
+  padding: 1rem;
 }
 
-nav a.router-link-exact-active {
-  color: var(--color-text);
+ul {
+  list-style-type: none;
+  padding: 0;
 }
 
-nav a.router-link-exact-active:hover {
-  background-color: transparent;
+li {
+  display: inline;
+  margin-right: 1rem;
 }
 
-nav a {
-  display: inline-block;
-  padding: 0 1rem;
-  border-left: 1px solid var(--color-border);
+a {
+  color: white;
+  text-decoration: none;
 }
 
-nav a:first-of-type {
-  border: 0;
+a:hover {
+  text-decoration: underline;
 }
 
-@media (min-width: 1024px) {
-  header {
-    display: flex;
-    place-items: center;
-    padding-right: calc(var(--section-gap) / 2);
-  }
+main {
+  padding: 1rem;
+}
 
-  .logo {
-    margin: 0 2rem 0 0;
-  }
+h1 {
+  color: #333;
+}
 
-  header .wrapper {
-    display: flex;
-    place-items: flex-start;
-    flex-wrap: wrap;
-  }
-
-  nav {
-    text-align: left;
-    margin-left: -1rem;
-    font-size: 1rem;
-
-    padding: 1rem 0;
-    margin-top: 1rem;
-  }
+p {
+  font-size: 1rem;
+  color: #666;
 }
 </style>
+
