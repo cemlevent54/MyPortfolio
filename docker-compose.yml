@@ -1,34 +1,7 @@
 # version: "3.8"
 
 services:
-  database:
-    platform: linux/x86_64
-    image: mysql:5.7
-    restart: always
-    environment:
-      MYSQL_ROOT_PASSWORD: password
-      MYSQL_DATABASE: MyPortfolio
-      MYSQL_PASSWORD: password
-    ports:
-      - "3306:3306"
-    volumes:
-      - mysql_data:/var/lib/mysql
-    networks:
-      - app-network
-
-  phpmyadmin:
-    image: phpmyadmin
-    restart: always
-    ports:
-      - "8090:80"
-    environment:
-      PMA_HOST: database
-      PMA_PORT: 3306
-      MYSQL_ROOT_PASSWORD: password
-    depends_on:
-      - database
-    networks:
-      - app-network
+  
 
   backend:
     build:
@@ -40,11 +13,12 @@ services:
     volumes:
       - ./api:/app
       - dotnet_cache:/root/.nuget/packages
-    entrypoint: ["dotnet", "watch", "run", "--urls", "http://*:80"]
-    depends_on:
-      - database
+    entrypoint: [ "dotnet", "watch", "run", "--urls", "http://*:80" ]
+    # depends_on:
+    #   - database
     environment:
-      ConnectionStrings__MySqlConnection: "Server=database;Port=3306;Database=MyPortfolio;Uid=root;Pwd=password;"
+      # Update connection string to use SQLite
+      ConnectionStrings__MyPortfolio_v3_DB: "Data Source=/app/MyPortfolio.db"
     networks:
       - app-network
 
@@ -58,12 +32,12 @@ services:
       - /app/node_modules
     ports:
       - "8080:3000"
-    command: ["npm", "run", "dev"]
+    command: [ "npm", "run", "dev" ]
     depends_on:
       - backend
     networks:
       - app-network
-  
+
   adminfrontend:
     build:
       context: ./adminfrontend
@@ -74,15 +48,16 @@ services:
       - /app/node_modules
     ports:
       - "8081:3000"
-    command: ["npm", "run", "dev"]
+    command: [ "npm", "run", "dev" ]
     depends_on:
       - backend
     networks:
       - app-network
 
 volumes:
-  mysql_data:
   dotnet_cache:
+
 
 networks:
   app-network:
+    driver: bridge

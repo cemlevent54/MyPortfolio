@@ -1,0 +1,21 @@
+# Derleme dosyaları
+bin/
+obj/
+
+# SQLite veritabanı dosyaları
+# *.db
+# *.db-shm
+# *.db-wal
+
+# Kullanıcı ve yapılandırma dosyaları
+*.user
+*.suo
+.vscode/
+.idea/
+
+*.jpg
+*.jpeg
+*.png
+
+# json ignore
+*.json

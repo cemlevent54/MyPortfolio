@@ -28,3 +28,8 @@ coverage
 *.sw?
 
 *.tsbuildinfo
+
+.png
+.jpg
+.gif
+.jpeg

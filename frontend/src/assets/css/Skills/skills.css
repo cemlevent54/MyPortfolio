@@ -1,0 +1,173 @@
+.skills .filters {
+    text-align: center;
+    margin-bottom: 20px;
+  }
+  
+  .skills .filter-btn {
+    padding: 10px 20px;
+    margin: 0 10px;
+    border: none;
+    cursor: pointer;
+    background: var(--default-color);
+    color: white;
+    border-radius: 5px;
+    transition: background 0.3s;
+  }
+  
+  .skills .filter-btn.active,
+  .skills .filter-btn:hover {
+    background: var(--accent-color);
+  }
+  
+  .skills .skills-content {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 20px;
+    justify-content: center;
+  }
+  
+  .skill-card {
+    display: none;
+    width: 250px;
+  }
+  
+  .skill-card .card {
+    background: #fff;
+    border-radius: 10px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+    overflow: hidden;
+    text-align: center;
+    padding: 20px;
+  }
+  
+  .skill-card .card-icon {
+    height: 100px;
+    background-size: cover;
+    background-position: center;
+    margin-bottom: 10px;
+  }
+  
+  .skill-card .card-content h3 {
+    margin: 0;
+    font-size: 20px;
+  }
+  
+  .skill-card .card-content p {
+    margin: 5px 0 0;
+    color: gray;
+  }
+  
+  /* Skills Filters */
+  .skills .isotope-filters {
+    padding: 0;
+    margin: 0 auto 20px auto;
+    list-style: none;
+    text-align: center;
+    background: #f4f6f7;
+    border-radius: 50px;
+    padding: 2px 15px;
+  }
+  
+  .skills .isotope-filters li {
+    cursor: pointer;
+    display: inline-block;
+    padding: 8px 20px 10px 20px;
+    font-size: 14px;
+    font-weight: 600;
+    line-height: 1;
+    text-transform: uppercase;
+    color: var(--color-default);
+    margin-bottom: 5px;
+    transition: all 0.4s ease;
+    border-radius: 50px;
+    position: relative;
+    overflow: hidden;
+  }
+  
+  .skills .isotope-filters li:hover {
+    color: #fff;
+    background: #34b7a7;
+    transform: translateY(-2px);
+    box-shadow: 0 5px 15px rgba(52, 183, 167, 0.2);
+  }
+  
+  .skills .isotope-filters li.filter-active {
+    color: #fff;
+    background: #34b7a7;
+  }
+  
+  .skills .isotope-filters li:hover::before {
+    transform: scaleX(1);
+  }
+  
+  .skills .isotope-filters li:active {
+    transform: scale(0.95);
+  }
+  
+  .skills .isotope-filters li:first-child {
+    margin-left: 0;
+  }
+  
+  .skills .isotope-filters li:last-child {
+    margin-right: 0;
+  }
+  
+  @media (max-width: 768px) {
+    .skills .isotope-filters li {
+      padding: 6px 15px;
+    }
+  }
+  
+  /* Skills Cards */
+  .skills .card {
+    padding: 15px;
+    border-radius: 10px;
+    background: #fff;
+    box-shadow: 0 0 30px rgba(0, 0, 0, 0.08);
+    transition: 0.3s;
+  }
+  
+  .skills .card:hover {
+    transform: translateY(-5px);
+  }
+  
+  .skills .skill-content {
+    display: flex;
+    align-items: center;
+    gap: 15px;
+  }
+  
+  .skills .skill-icon {
+    flex-shrink: 0;
+    width: 40px;
+    height: 40px;
+  }
+  
+  .skills .skill-icon img {
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+  }
+  
+  .skills .card h3 {
+    font-size: 18px;
+    font-weight: 500;
+    margin: 0;
+    color: var(--color-default);
+  }
+  
+  @media (max-width: 768px) {
+    .skills .card {
+      padding: 10px;
+    }
+    
+    .skills .skill-icon {
+      width: 35px;
+      height: 35px;
+    }
+    
+    .skills .card h3 {
+      font-size: 16px;
+    }
+  }
+  
